@@ -111,7 +111,10 @@ spec:
               value: "{{ .EnableEventPublisher }}"
             - name: PLUGINS
               value: "{{ .EnabledPlugins }}"
-
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "/bin/sh","-c","./preStop.sh" ]
           volumeMounts:
             - name: config-volume
               mountPath: /etc/linuxptp
